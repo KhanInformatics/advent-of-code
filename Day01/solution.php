@@ -1,44 +1,49 @@
 <?php
-
-// Set file path
+// Input file name
 $filename = 'input.txt';
 
-// Check if file exists
+// Check if the input file exists
 if (!file_exists($filename)) {
-    die("Error: input.txt not found.\n");
+    die("Error: Input file '$filename' not found.\n");
 }
 
-// Read file contents
+// Read the file contents into an array
 $input = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-if ($input === false || count($input) === 0) {
-    die("Error: input.txt is empty or cannot be read.\n");
+if ($input === false) {
+    die("Error: Failed to open input file.\n");
 }
 
-// Parse the input
+// Initialize variables
+$totalDistance = 0;
 $left = [];
 $right = [];
 
+// Process each line in the input file
 foreach ($input as $line) {
-    $parts = explode(' ', trim($line));
+    // Split the line into parts
+    $parts = explode(' ', $line);
+
+    // Ensure the line contains exactly two parts
     if (count($parts) !== 2) {
-        die("Error: Invalid line format in input.txt\n");
+        die("Error: Invalid input format at line: $line\n");
     }
-    list($l, $r) = $parts;
-    $left[] = (int)$l;
-    $right[] = (int)$r;
+
+    // Parse the left and right values
+    $l = (int)$parts[0];
+    $r = (int)$parts[1];
+
+    // Add values to respective arrays
+    $left[] = $l;
+    $right[] = $r;
+
+    // Calculate the distance for this pair
+    $distance = abs($l - $r);
+    $totalDistance += $distance;
+
+    // Debugging output
+    echo "Processed: Left = $l, Right = $r, Distance = $distance\n";
 }
 
-// Sort both arrays
-sort($left);
-sort($right);
-
-// Calculate total distance
-$totalDistance = 0;
-for ($i = 0; $i < count($left); $i++) {
-    $totalDistance += abs($left[$i] - $right[$i]);
-}
-
-// Output the result
+// Final output
 echo "Total Distance: $totalDistance\n";
-
 ?>
