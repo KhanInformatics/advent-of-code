@@ -6,7 +6,7 @@ $input = file('input.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 // Parse the input into two arrays
 $left = [];
 $right = [];
-
+//entire loop is to get the left and right values from the input file
 foreach ($input as $line) {
     list($l, $r) = explode(' ', trim($line));
     $left[] = (int)$l;
