@@ -1,0 +1,9 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>./Day01</directory>
+            <directory>./Day02</directory>
+        </testsuite>
+    </testsuites>
+    <bootstrap>vendor/autoload.php</bootstrap>
+</phpunit>

@@ -20,8 +20,11 @@ $right = [];
 
 // Process each line in the input file
 foreach ($input as $line) {
-    // Split the line into parts
-    $parts = explode(' ', $line);
+    // Debug: Print the current line
+    //echo "Line: $line\n";
+
+    // Split the line into parts using regular expression to handle multiple spaces
+    $parts = preg_split('/\s+/', $line);
 
     // Ensure the line contains exactly two parts
     if (count($parts) !== 2) {
@@ -31,19 +34,25 @@ foreach ($input as $line) {
     // Parse the left and right values
     $l = (int)$parts[0];
     $r = (int)$parts[1];
-
-    // Add values to respective arrays
     $left[] = $l;
     $right[] = $r;
-
-    // Calculate the distance for this pair
-    $distance = abs($l - $r);
-    $totalDistance += $distance;
-
-    // Debugging output
-    echo "Processed: Left = $l, Right = $r, Distance = $distance\n";
 }
 
-// Final output
-echo "Total Distance: $totalDistance\n";
+// Sort both lists
+sort($left);
+sort($right);
+
+// Calculate the total distance
+$totalDistance = 0;
+
+for ($i = 0; $i < count($left); $i++) {
+    $totalDistance += abs($left[$i] - $right[$i]);
+}
+
+// Output the result
+echo $totalDistance;
+
+// Debug: Print arrays
+//print_r($left);
+//print_r($right);
 ?>

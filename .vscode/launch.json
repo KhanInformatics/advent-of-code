@@ -5,9 +5,11 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
+            "program": "${workspaceFolder}/Day02/SolutionDay2.php",
+            "cwd": "${workspaceFolder}",
             "port": 9004,
             "pathMappings": {
-                "/Users/imrankhan/advent-of-code/Day01": "${workspaceFolder}/Day01"
+                "/Users/imrankhan/advent-of-code/Day02": "${workspaceFolder}/Day02"
             },
             "log": true
         }
