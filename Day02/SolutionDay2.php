@@ -1,11 +1,14 @@
 <?php
-//test day2
 
+// Start the timer
+$startTime = microtime(true);
+
+// Function to check if a report is safe
 function isSafeReport($levels) {
     $n = count($levels);
     $increasing = true;
     $decreasing = true;
-
+    
     for ($i = 1; $i < $n; $i++) {
         $diff = $levels[$i] - $levels[$i - 1];
 
@@ -48,5 +51,11 @@ $result = countSafeReports($input);
 
 // Output the result
 echo "Number of safe reports: $result\n";
+
+// End the timer and calculate the elapsed time
+$endTime = microtime(true);
+$executionTime = $endTime - $startTime;
+
+echo "Execution time: " . $executionTime . " seconds\n";
 
 ?>
